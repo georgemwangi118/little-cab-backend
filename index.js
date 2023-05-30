@@ -20,18 +20,9 @@ const userRoute = require("./routes/userRoutes");
 //routes
 app.use("/api/user", userRoute);
 
-if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "../crud/dist")));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../crud", "dist", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running....");
-  });
-}
+app.get("/", (req, res) => {
+  res.send("API is running....");
+});
 
 const port = process.PORT || 5000;
 
